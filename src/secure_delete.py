@@ -18,4 +18,3 @@ def delete(file_path, passes=3):
             print(f"El archivo {file_path} no existe.")
     except Exception as e:
         print(f"Error al intentar borrar el archivo de forma segura: {e}")
-
