@@ -1,5 +1,5 @@
 import os
-import test
+import secure_delete
 
 
 archivos = []
@@ -14,4 +14,4 @@ listar_archivos_documentos(archivos)
 
 for archivo in archivos:
     print(archivo)
-    test.secure_delete(archivo)
+    secure_delete.delete(archivo)

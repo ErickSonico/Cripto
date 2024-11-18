@@ -1,6 +1,6 @@
 import os
 
-def secure_delete(file_path, passes=3):
+def delete(file_path, passes=3):
     try:
         if os.path.exists(file_path):
             # Sobrescribir el archivo con datos aleatorios
