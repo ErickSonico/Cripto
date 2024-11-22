@@ -4,9 +4,7 @@ import sys
 import winreg as reg
 from pathlib import Path
 
-def fondo(ruta_imagen):
-
-    
+def fondo(ruta_imagen):    
     clave_registro = r"Control Panel\Desktop"
     with reg.OpenKey(reg.HKEY_CURRENT_USER, clave_registro, 0, reg.KEY_SET_VALUE) as clave:
         reg.SetValueEx(clave, "WallpaperStyle", 0, reg.REG_SZ, "2")
