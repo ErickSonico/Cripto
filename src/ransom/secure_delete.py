@@ -3,7 +3,7 @@ import os
 def delete(file_path, passes=3):
     """
     Este método sobrescribe el archivo con datos aleatorios y luego lo borra de forma segura.
-    Creado por ChatGPT.
+    Creado por ChatGPT con modificaciones propias.
     """
     try:
         if os.path.exists(file_path):
